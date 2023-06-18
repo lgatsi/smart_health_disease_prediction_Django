@@ -1,0 +1,1 @@
+web: gunicorn smart_health_disease_prediction.wsgi

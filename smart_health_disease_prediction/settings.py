@@ -1,4 +1,7 @@
 import os
+import django_heroku
+import dj_database_url
+from decouple import config
 
 from pathlib import Path
 import os
@@ -40,6 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'smart_health_disease_prediction.urls'
@@ -125,6 +129,7 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -135,3 +140,8 @@ AUTH_USER_MODEL = 'core.User_manage'
 LOGIN_URL = 'login'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+
+
+
+django_heroku.settings(locals())
